@@ -30,7 +30,7 @@ retrieved_text = "\n".join(doc.page_content for doc in retrieved_docs)
 
 llm = HuggingFaceEndpoint(
     repo_id="openai/gpt-oss-20b",
-    huggingfacehub_api_token='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'
+    huggingfacehub_api_token=HUGGINGFACEHUB_API_TOKEN
 )
 model = ChatHuggingFace(llm=llm)
 prompt = PromptTemplate(
@@ -39,4 +39,5 @@ prompt = PromptTemplate(
 )
 prompt_formatted = prompt.format(query=query, retrieved_text=retrieved_text)
 answer = model.invoke(prompt_formatted)
+
 print(answer.content)
